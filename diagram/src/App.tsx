@@ -76,7 +76,7 @@ export default function App() {
     }).then((dataUrl) => {
       const a = document.createElement('a');
       a.href = dataUrl;
-      a.download = `skrinak-dlc-${mode}.png`;
+      a.download = `simple-ai-dlc-${mode}.png`;
       a.click();
     });
   }, [getNodes, mode]);

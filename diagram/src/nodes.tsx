@@ -137,7 +137,7 @@ export function HeroNode(_props: NodeProps) {
           }}
         >
           <Typography variant="h4" sx={{ color: sc.heading, mb: 0.5, fontSize: '1.75rem' }}>
-            Skrinak-DLC
+            Simple-AI-DLC
           </Typography>
           <Typography
             variant="subtitle1"

@@ -1,8 +1,8 @@
-# The Skrinak-DLC: An AI-Driven Development Lifecycle for Enterprise Teams
+# The Simple-AI-DLC: An AI-Driven Development Lifecycle for Enterprise Teams
 
 *A simpler, memorable, and immediately actionable alternative to complex AI development methodologies, built on lessons from the Claude Code architecture leak, battle-tested context engineering patterns, and the goals of AWS's AI-DLC.*
 
-**[Interactive Diagram](https://s3.us-east-1.amazonaws.com/test.tube/Skrinak-DLC/index.html)** — React Flow + MUI v5 visualization with dark/light toggle and PNG export
+**[Interactive Diagram](https://s3.us-east-1.amazonaws.com/test.tube/Simple-AI-DLC/index.html)** — React Flow + MUI v5 visualization with dark/light toggle and PNG export
 
 ---
 
@@ -12,7 +12,7 @@ The AWS AI-DLC correctly identifies what matters: "AI should drive development, 
 
 The Claude Code source leak revealed something crucial: the most successful AI agent in production ($2.5B run rate) operates through "twelve boring engineering primitives" including tool registries, permission tiers, crash recovery, and token budgets rather than complex orchestration.
 
-The Skrinak-DLC preserves the AI-DLC's core objectives while stripping away ceremony, rebuilding on these proven primitives. It maps to the AWS AI stack: Kiro for spec-driven Inception, Amazon Bedrock as the model layer, Strands Agents for building agents with proper primitives, and AgentCore for production operations.
+The Simple-AI-DLC preserves the AI-DLC's core objectives while stripping away ceremony, rebuilding on these proven primitives. It maps to the AWS AI stack: Kiro for spec-driven Inception, Amazon Bedrock as the model layer, Strands Agents for building agents with proper primitives, and AgentCore for production operations.
 
 ---
 
@@ -44,18 +44,18 @@ Tenets represent load-bearing decisions made in advance to prevent repeated team
 
 ## Three Phases
 
-The Skrinak-DLC retains the AI-DLC's three phases — Inception, Construction, Operations — but reduces each to essential actions. No mob rituals beyond task requirements.
+The Simple-AI-DLC retains the AI-DLC's three phases — Inception, Construction, Operations — but reduces each to essential actions. No mob rituals beyond task requirements.
 
 ### The AWS Stack
 
-| Layer | AWS Service | Role in the Skrinak-DLC |
+| Layer | AWS Service | Role in the Simple-AI-DLC |
 |-------|-------------|------------------------|
 | **Model** | Amazon Bedrock | Foundation model access: Claude, Nova, and others. The inference engine underneath every phase. |
 | **Inception** | Kiro | Spec-driven IDE that generates requirements, design docs, and task lists before a line of code is written. |
 | **Construction** | Strands Agents | Open-source SDK for building agents with tool registries, steering hooks, and session management: the 12 primitives in code. |
 | **Operations** | AgentCore | Managed runtime for deploying agents at scale: session isolation, identity federation, Cedar policy enforcement, and observability. |
 
-These services function as layers rather than alternatives. Bedrock provides models. Kiro plans work. Strands builds agents. AgentCore runs them in production. Skrinak-DLC tenets govern usage across all four.
+These services function as layers rather than alternatives. Bedrock provides models. Kiro plans work. Strands builds agents. AgentCore runs them in production. Simple-AI-DLC tenets govern usage across all four.
 
 ---
 
@@ -272,7 +272,7 @@ The active session context: current task, recent file reads, corrections made in
 
 ## Quick Reference
 
-| AI-DLC Concept | Skrinak-DLC Equivalent | Claude Code / Kiro | AWS Agent Stack |
+| AI-DLC Concept | Simple-AI-DLC Equivalent | Claude Code / Kiro | AWS Agent Stack |
 |---|---|---|---|
 | Intent | PRD | PRD skill or Kiro spec workflow | Bedrock (model layer) |
 | Units & Bolts | Atomic tasks in tasks.md | Task generation skill / Kiro tasks.md | \- |
@@ -311,4 +311,4 @@ Open http://localhost:3000 to explore. Features include dark/light theme toggle 
 
 ---
 
-*The Skrinak-DLC: Ten tenets. Twelve primitives. Three phases. One constitution. Plan in Kiro, build with Strands, run on AgentCore, powered by Bedrock. Ship enterprise software with AI agents that don't just work, they work safely, recoverably, and at scale.*
+*The Simple-AI-DLC: Ten tenets. Twelve primitives. Three phases. One constitution. Plan in Kiro, build with Strands, run on AgentCore, powered by Bedrock. Ship enterprise software with AI agents that don't just work, they work safely, recoverably, and at scale.*
