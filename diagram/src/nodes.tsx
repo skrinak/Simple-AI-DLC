@@ -488,7 +488,7 @@ export function AwsNode({ data }: NodeProps & { data: AwsData }) {
   const c = nodeColors.aws;
   return (
     <NodeShell
-      width={520}
+      width={580}
       accentColor={c.accent}
       bgColor={c.bg}
       borderColor={c.border}

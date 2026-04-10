@@ -100,13 +100,13 @@ export const initialNodes: Node[] = [
         {
           tier: 1,
           name: 'Constitution',
-          label: 'CLAUDE.md',
+          label: 'CLAUDE.md / .kiro/steering/',
           detail: 'Immutable constraints, standards, architecture',
         },
         {
           tier: 2,
           name: 'Case Law',
-          label: '.claude/memory/',
+          label: '.claude/memory/ / .kiro/agents/',
           detail: 'Accumulated lessons, preferences, context',
         },
         {
@@ -121,11 +121,13 @@ export const initialNodes: Node[] = [
   {
     id: 'aws',
     type: 'aws',
-    position: { x: 370, y: 1140 },
+    position: { x: 340, y: 1140 },
     data: {
       services: [
         { name: 'Amazon Bedrock', role: 'Model infrastructure & inference' },
-        { name: 'Kiro', role: 'Spec-driven Inception phase' },
+        { name: 'Kiro', role: 'Spec-driven IDE for Inception' },
+        { name: 'Kiro CLI', role: 'Terminal agentic coding & agents' },
+        { name: 'Amazon Q Developer', role: '/dev, /review, /transform, /doc' },
         { name: 'Strands Agents SDK', role: 'Implements the twelve primitives' },
         { name: 'AgentCore', role: 'Managed runtime for production' },
       ],

@@ -1,6 +1,6 @@
 # The Simple-AI-DLC: An AI-Driven Development Lifecycle for Enterprise Teams
 
-*A simpler, memorable, and immediately actionable alternative to complex AI development methodologies, built on lessons from the Claude Code architecture leak, battle-tested context engineering patterns, and the goals of AWS's AI-DLC.*
+*A simple, memorable, and immediately deployable alternative to complex AI development methodologies.*
 
 **[Interactive Diagram](https://s3.us-east-1.amazonaws.com/test.tube/Simple-AI-DLC/index.html)** — React Flow + MUI v5 visualization with dark/light toggle and PNG export
 
@@ -8,11 +8,11 @@
 
 ## The Problem
 
-The AWS AI-DLC correctly identifies what matters: "AI should drive development, not assist it." However, its implementation proves too cumbersome for practical adoption. Teams acknowledge the framework but revert to basic ChatGPT prompting.
+The [AWS AI-DLC](https://prod.d13rzhkk8cj2z0.amplifyapp.com/) correctly identifies what matters: "AI should drive development, not assist it." However, its implementation proves too cumbersome for practical adoption. Teams acknowledge the framework but revert to basic ChatGPT prompting.
 
-The Claude Code source leak revealed something crucial: the most successful AI agent in production ($2.5B run rate) operates through "twelve boring engineering primitives" including tool registries, permission tiers, crash recovery, and token budgets rather than complex orchestration.
+The April 2026 Claude Code source leak revealed something crucial: the most successful AI agent in production ($2.5B run rate) operates through "twelve boring engineering primitives" including tool registries, permission tiers, crash recovery, and token budgets rather than complex orchestration.
 
-The Simple-AI-DLC preserves the AI-DLC's core objectives while stripping away ceremony, rebuilding on these proven primitives. It maps to the AWS AI stack: Kiro for spec-driven Inception, Amazon Bedrock as the model layer, Strands Agents for building agents with proper primitives, and AgentCore for production operations.
+The Simple-AI-DLC preserves the AI-DLC's core objectives while stripping away ceremony, rebuilding on these proven primitives. It maps to the full AWS developer stack: Kiro for spec-driven Inception, Kiro CLI for terminal-based agentic coding, Amazon Q Developer for IDE-integrated coding assistance, Amazon Bedrock as the model layer, Strands Agents for building agents with proper primitives, and AgentCore for production operations.
 
 ---
 
@@ -52,10 +52,12 @@ The Simple-AI-DLC retains the AI-DLC's three phases — Inception, Construction,
 |-------|-------------|------------------------|
 | **Model** | Amazon Bedrock | Foundation model access: Claude, Nova, and others. The inference engine underneath every phase. |
 | **Inception** | Kiro | Spec-driven IDE that generates requirements, design docs, and task lists before a line of code is written. |
-| **Construction** | Strands Agents | Open-source SDK for building agents with tool registries, steering hooks, and session management: the 12 primitives in code. |
-| **Operations** | AgentCore | Managed runtime for deploying agents at scale: session isolation, identity federation, Cedar policy enforcement, and observability. |
+| **Terminal** | Kiro CLI | Agentic coding in the terminal: chat, custom agents, steering files, hooks, and MCP servers. The direct Claude Code equivalent on AWS. |
+| **IDE Assistant** | Amazon Q Developer | AI coding assistant with `/dev`, `/review`, `/transform`, and `/doc` agents, inline suggestions, and security scanning. Available in VS Code, JetBrains, and the AWS Console. |
+| **Agent SDK** | Strands Agents | Open-source SDK for building agents with tool registries, steering hooks, and session management: the 12 primitives in code. |
+| **Runtime** | AgentCore | Managed runtime for deploying agents at scale: session isolation, identity federation, Cedar policy enforcement, and observability. |
 
-These services function as layers rather than alternatives. Bedrock provides models. Kiro plans work. Strands builds agents. AgentCore runs them in production. Simple-AI-DLC tenets govern usage across all four.
+These services function as layers rather than alternatives. Bedrock provides models. Kiro plans work. Kiro CLI brings that workflow to the terminal. Amazon Q Developer adds AI assistance inside the IDE. Strands builds agents. AgentCore runs them in production. Simple-AI-DLC tenets govern usage across all six.
 
 ---
 
@@ -92,6 +94,31 @@ tasks.md          # Sequenced, dependency-mapped implementation tasks
 
 Kiro's steering files (`.kiro/steering/`) serve the same function as CLAUDE.md: `product.md` defines purpose and users, `tech.md` defines frameworks and constraints, `structure.md` defines file organization. The constitution concept remains identical; file names differ.
 
+#### In Kiro CLI:
+
+The same steering-driven workflow, from the terminal:
+
+```bash
+kiro chat "Generate a PRD for [your intent]. Walk through personas,
+           architecture, data flows, and task decomposition."
+
+# Steering files load automatically, giving the agent persistent project knowledge
+# Resume previous sessions to iterate across rounds
+kiro chat --resume
+```
+
+Kiro CLI steering files (`.kiro/steering/`) load at the start of every session — the same constitutional mechanism as CLAUDE.md. Custom agents can scope Inception work further: a `prd-writer` agent with its own system prompt, tools, and permissions focused exclusively on requirements gathering.
+
+#### In Amazon Q Developer:
+
+```
+/dev  Design a serverless API with Lambda, API Gateway, and DynamoDB
+      for a task management system. Include CRUD operations,
+      authentication via Cognito, and IaC templates.
+```
+
+Amazon Q Developer's `/dev` agent breaks down the prompt into logical implementation steps, generates code across multiple files, and lets you review and iterate before applying changes. Its deep knowledge of 17 years of AWS architecture patterns makes it particularly strong for infrastructure-aware bootstrapping. The `/doc` agent can then generate documentation with data flow diagrams from the resulting code.
+
 The PRD serves not as formality but as the singular document preventing agent scope hallucination, invented requirements, or incorrect implementations. A 2-hour PRD investment prevents 20 hours of rework.
 
 ---
@@ -126,6 +153,53 @@ The PRD serves not as formality but as the singular document preventing agent sc
 * Match existing patterns. The codebase is the style guide
 * If a task is blocked, document why and move to the next unblocked task
 * Never batch tests at the end. Every task includes its own verification
+
+#### In Kiro CLI:
+
+Kiro CLI mirrors the Claude Code construction cycle in the terminal with steering, hooks, and custom agents:
+
+```bash
+# Construction with persistent project conventions
+kiro chat "Implement the authentication module following existing patterns."
+
+# Custom agents scope the construction work
+kiro agent create security-reviewer
+# Each agent gets its own tools, permissions, system prompt, and MCP servers
+
+# Hooks enforce the construction cycle automatically:
+#   preToolUse  → validate before file writes or shell commands
+#   postToolUse → run formatters and linters after every edit
+#   stop        → trigger test suites when the agent finishes
+```
+
+Kiro CLI hooks map directly to Claude Code hooks: `preToolUse` validates before execution (matching `fs_write`, `execute_bash`), `postToolUse` runs formatters after edits, and `stop` triggers compilation or tests when the agent finishes responding. The `allowedTools` configuration enforces permission tiers — tools like `read` run without prompting while `shell` requires approval.
+
+#### In Amazon Q Developer:
+
+Amazon Q Developer provides purpose-built agents for construction:
+
+```
+/dev        Implement the user authentication flow with JWT tokens,
+            refresh token rotation, and role-based access control.
+
+/review     (Automated code review: logical errors, anti-patterns,
+             security vulnerabilities, and AWS best practices)
+
+/transform  Upgrade the Java 11 codebase to Java 17, including
+            dependency updates and API migration.
+
+/doc        Generate documentation with data flow diagrams
+            from the existing codebase.
+```
+
+| Agent | Construction Role |
+|-------|------------------|
+| `/dev` | Feature implementation with workspace-aware code generation across multiple files |
+| `/review` | Automated code review: vulnerabilities, anti-patterns, duplication, naming violations |
+| `/transform` | Language and framework upgrades with automated dependency migration |
+| `/doc` | Documentation generation with data flow diagrams from existing code |
+| Inline suggestions | Real-time code completions across 25+ languages |
+| Security scanning | Continuous vulnerability detection aligned with OWASP and CWE standards |
 
 #### Building agents with Strands:
 
@@ -186,6 +260,36 @@ agent = Agent(
 | 11. Permission Audit Trail | **Identity**: federated auth via Cognito, Entra ID, Okta. Agents act on behalf of users with delegated credentials. |
 
 AgentCore is framework-agnostic: it runs Strands, LangGraph, CrewAI, or any containerized agent. It auto-scales from zero to thousands of concurrent sessions with per-second billing.
+
+#### With Kiro CLI:
+
+Custom agents turn Kiro CLI into a DevOps terminal:
+
+```bash
+# Create a specialized DevOps agent with infrastructure tools
+kiro chat --agent devops "Deploy the staging environment and run health checks."
+
+# Query AWS resources conversationally
+kiro chat "What EC2 instances are running in us-west-2? Show their health."
+
+# Extend reach with MCP servers
+kiro mcp add --name terraform --command terraform-mcp-server
+kiro mcp add --name cloudwatch --command cw-mcp-server
+```
+
+Kiro CLI agents can manage AWS infrastructure, generate Terraform scripts, deploy EKS clusters, and query resources directly — all from conversational commands with full access to your AWS credentials and CLI environment.
+
+#### With Amazon Q Developer:
+
+Amazon Q Developer provides operational intelligence across the AWS Console and IDE:
+
+| Capability | Operations Role |
+|-----------|----------------|
+| Console integration | Troubleshoot services, optimize costs, and configure resources conversationally |
+| Operational investigation | Root-cause analysis using CloudWatch, X-Ray, and observability data |
+| Infrastructure as Code | Generate CloudFormation, CDK, or Terraform templates from architecture descriptions |
+| Console-to-Code | Convert manual AWS console actions into deployable, repeatable IaC |
+| Account intelligence | Query your running resources, billing, and permissions in natural language |
 
 ---
 
@@ -268,31 +372,40 @@ Memory files in `.claude/memory/` accumulate lessons learned across sessions:
 
 The active session context: current task, recent file reads, corrections made in real time. Ephemeral by design. When the context degrades, `/clear` and reload Tiers 1 and 2.
 
+#### Tool Equivalents Across the Memory Tiers
+
+| Memory Tier | Claude Code | Kiro / Kiro CLI | Amazon Q Developer |
+|-------------|-------------|-----------------|-------------------|
+| Tier 1: Constitution | `CLAUDE.md` | `.kiro/steering/` — `product.md`, `tech.md`, `structure.md`, plus custom files | Workspace context + customization profiles |
+| Tier 2: Case Law | `.claude/memory/` files | Conversation history per directory, custom agent configs in `.kiro/agents/` | Code customization trained on private repositories |
+| Tier 3: Live Testimony | Active session context | `kiro chat` session (`--resume` to continue) | IDE chat context, inline suggestion context |
+
 ---
 
 ## Quick Reference
 
-| AI-DLC Concept | Simple-AI-DLC Equivalent | Claude Code / Kiro | AWS Agent Stack |
-|---|---|---|---|
-| Intent | PRD | PRD skill or Kiro spec workflow | Bedrock (model layer) |
-| Units & Bolts | Atomic tasks in tasks.md | Task generation skill / Kiro tasks.md | \- |
-| Mob Elaboration | AI-driven PRD conversation | `/init` or Kiro requirements.md | Kiro steering files |
-| Mob Construction | Developer + agent construction cycles | `/clear` discipline | Strands `@tool` + hooks |
-| Domain Design (DDD) | Embedded in PRD Round 2 | Agent asks architecture questions | Kiro design.md |
-| Logical Design | CLAUDE.md architecture constraints | Constitution loaded every session | Kiro steering: tech.md |
-| 9-step workflow | 3 phases, 4 PRD rounds, atomic tasks | Skills, slash commands, memory files | Kiro → Strands → AgentCore |
-| Context memory | Three-tier memory architecture | CLAUDE.md + `.claude/memory/` + session | AgentCore Memory service |
-| Human oversight | Verify the work and the harness (Tenet 8) | Two-level verification | AgentCore Policy (Cedar) |
-| Production deployment | IaC + monitoring | CloudFormation / CDK | AgentCore Runtime + Observability |
-| Tool connectivity | MCP servers, skills | `.claude/settings.json` | AgentCore Gateway + Strands MCP |
-| Identity & access | Permission tiers | Trust tiers in settings.json | AgentCore Identity (Cognito, Entra, Okta) |
+| AI-DLC Concept | Simple-AI-DLC Equivalent | Claude Code | Kiro / Kiro CLI | Amazon Q Developer | Strands / AgentCore |
+|---|---|---|---|---|---|
+| Intent | PRD | PRD skill, `/init` | Kiro spec workflow, `kiro chat` | `/dev` agent bootstrapping | Bedrock (model layer) |
+| Units & Bolts | Atomic tasks in tasks.md | Task generation skill | Kiro tasks.md generation | `/dev` step decomposition | \- |
+| Mob Elaboration | AI-driven PRD conversation | `/init` interactive rounds | Kiro requirements.md, `kiro chat --resume` | `/dev` iterative review | \- |
+| Mob Construction | Developer + agent construction cycles | `/clear` discipline | Kiro CLI hooks + custom agents | `/dev` + `/review` + inline suggestions | Strands `@tool` + hooks |
+| Domain Design (DDD) | Embedded in PRD Round 2 | Agent asks architecture questions | Kiro design.md, steering files | AWS architecture knowledge (17 years) | \- |
+| Logical Design | Constitution constraints | CLAUDE.md loaded every session | `.kiro/steering/tech.md` | Workspace context | \- |
+| 9-step workflow | 3 phases, 4 PRD rounds, atomic tasks | Skills, slash commands, memory files | Kiro specs → Kiro CLI agents → hooks | `/dev` → `/review` → `/transform` | Strands → AgentCore |
+| Context memory | Three-tier memory architecture | CLAUDE.md + `.claude/memory/` + session | `.kiro/steering/` + chat history + session | Workspace + code customization + IDE chat | AgentCore Memory service |
+| Human oversight | Verify the work and the harness (Tenet 8) | Two-level verification | `preToolUse` / `postToolUse` hooks | `/review` automated code review | AgentCore Policy (Cedar) |
+| Production deployment | IaC + monitoring | CloudFormation / CDK | Kiro CLI DevOps agents, MCP servers | IaC generation, Console-to-Code | AgentCore Runtime + Observability |
+| Tool connectivity | MCP servers, skills | `.claude/settings.json` | `kiro mcp add`, `.kiro/agents/` configs | IDE extensions, AWS Console integration | AgentCore Gateway + Strands MCP |
+| Identity & access | Permission tiers | Trust tiers in settings.json | `allowedTools`, hook matchers | Enterprise access controls, IAM integration | AgentCore Identity (Cognito, Entra, Okta) |
+| Security | Continuous scanning | Permission system, Bash security | `preToolUse` validation hooks | OWASP/CWE vulnerability scanning, secrets detection | Cedar policies, audit trails |
 
 ---
 
 ## What This Is Not
 
 * **Not a framework to install.** It is a set of tenets and practices. Your CLAUDE.md, your PRD template, your task list format: these are the implementation.
-* **Not model-specific.** The tenets apply regardless of which LLM you use. Claude Code, Kiro, Strands, and AgentCore represent one instantiation on AWS. The primitives are universal.
+* **Not model-specific.** The tenets apply regardless of which LLM you use. Claude Code, Kiro, Kiro CLI, Amazon Q Developer, Strands, and AgentCore represent one instantiation on AWS. The primitives are universal.
 * **Not a replacement for engineering judgment.** The AI drives. You decide. If the agent proposes something violating your security model, your compliance requirements, or your common sense, you stop it. That is the job.
 
 ---
@@ -311,4 +424,4 @@ Open http://localhost:3000 to explore. Features include dark/light theme toggle 
 
 ---
 
-*The Simple-AI-DLC: Ten tenets. Twelve primitives. Three phases. One constitution. Plan in Kiro, build with Strands, run on AgentCore, powered by Bedrock. Ship enterprise software with AI agents that don't just work, they work safely, recoverably, and at scale.*
+*The Simple-AI-DLC: Ten tenets. Twelve primitives. Three phases. One constitution. Plan in Kiro, code with Kiro CLI, assist with Amazon Q Developer, compose with Strands, run on AgentCore, powered by Bedrock. Ship enterprise software with AI agents that don't just work — they work safely, recoverably, and at scale.*
